@@ -24,7 +24,6 @@ import { useRouter } from "next/router";
 import abi from "../utils/contractABI.json";
 import { useAccount, useEnsName } from "wagmi";
 import { ethers, utils } from "ethers";
-import Web3 from "web3";
 
 export const MultiStepForm = () => {
   const toast = useToast();
@@ -94,7 +93,7 @@ export const MultiStepForm = () => {
               );
               const signer = provider.getSigner();
               const contract = new ethers.Contract(
-                "0x6E3F98e8898B488B80FFEfff482e06B1A5A51Fae",
+                "0x3B79b994F08f8e3fBDddc90FEdc49EFB07af4c71",
                 contractAbi,
                 signer
               );

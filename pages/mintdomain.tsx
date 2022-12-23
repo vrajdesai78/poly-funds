@@ -18,7 +18,6 @@ import abi from "../utils/contractABI.json";
 
 const App = () => {
   const { address, isConnected } = useAccount();
-  const { data: ensName } = useEnsName({ address });
 
   const [domain, setDomain] = useState("");
 
@@ -45,7 +44,7 @@ const App = () => {
         );
         const signer = provider.getSigner();
         const contract = new ethers.Contract(
-          "0x6E3F98e8898B488B80FFEfff482e06B1A5A51Fae",
+          "0x3B79b994F08f8e3fBDddc90FEdc49EFB07af4c71",
           contractAbi,
           signer
         );
