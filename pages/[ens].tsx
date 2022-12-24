@@ -308,7 +308,7 @@ const App = () => {
               bg={"gray.100"}
             />
             <Stack mt={4} direction={"row"} spacing={2}>
-              <NumberInput width={"100%"}>
+              <NumberInput width={"100%"} border={1}>
                 <NumberInputField
                   placeholder="Enter Matic"
                   flex={2}
