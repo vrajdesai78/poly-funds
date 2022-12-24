@@ -27,6 +27,7 @@ import {
 } from "@chakra-ui/react";
 import { useAccount, useEnsName } from "wagmi";
 import abi from "../utils/contractABI.json";
+import polygonLogo from "../assets/Polygon_blockchain_logo.png";
 
 const App = () => {
   const { address, isConnected } = useAccount();
@@ -51,8 +52,6 @@ const App = () => {
       alert("Please enter a domain");
       return;
     }
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const cancelRef = React.useRef();
 
     const price =
       domain.length === 3 ? "0.05" : domain.length === 4 ? "0.02" : "0.01";
@@ -180,12 +179,11 @@ const App = () => {
             Decentralised naming for wallets, websites, & more.
           </chakra.p>
         </Flex>
-        <Box>
+        <Box ml={30}>
           <Image
-            src={imageUrl}
-            alt="3 women looking at a laptop"
+            src="https://cdn3d.iconscout.com/3d/premium/thumb/polygon-coin-6400031-5272781.png"
             fit="cover"
-            w="full"
+            w="60%"
             h="full"
             loading="lazy"
           />

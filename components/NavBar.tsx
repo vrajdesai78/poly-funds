@@ -65,9 +65,7 @@ export const NavBar = () => {
             >
               Mint Domain{" "}
             </Button>
-            <Box ml={10}>
-              <ConnectButton showBalance={false} />
-            </Box>
+            <ConnectButton showBalance={false} />
           </HStack>
         </Flex>
       </chakra.header>

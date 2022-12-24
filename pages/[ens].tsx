@@ -139,7 +139,9 @@ const App = () => {
                         setProfile(data as profileDetails);
                       });
                   } else {
-                    alert("Domain not found");
+                    return {
+                      notFound: true,
+                    };
                   }
                 });
             }
