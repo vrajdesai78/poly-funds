@@ -11,21 +11,21 @@ The admin user must have Node.js and npm to use this boilerplate. Just download 
 ## Setup Instructions
 
 Clone the repo via CLI:
-sh
+```sh
 git clone https://github.com/vrajdesai78/poly-funds
 cd poly-funds
-
+```
 
 Install the required packages:
-sh
+```sh
 npm install 
 yarn install   #or
-
+```
 
 In the project directory, you can run:
-sh
+```sh
 npm run dev
 yarn dev   #or
-
+```
 
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
