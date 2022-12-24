@@ -131,6 +131,7 @@ export const MultiStepForm = () => {
           maxWidth={"100v"}
           p={6}
           m="10px auto"
+          bg="#fefefe60"
         >
           <Progress
             hasStripe
@@ -152,7 +153,7 @@ export const MultiStepForm = () => {
                   p={6}
                   my={12}
                   m={4}
-                  bg="#dae3fb91"
+                  bg="#fefefe60"
                 >
                   <Heading
                     lineHeight={1.1}
@@ -244,7 +245,7 @@ export const MultiStepForm = () => {
                   p={6}
                   my={12}
                   m={4}
-                  bg="#dae3fb91"
+                  bg="#ffffff91"
                 >
                   <Heading
                     lineHeight={1.1}

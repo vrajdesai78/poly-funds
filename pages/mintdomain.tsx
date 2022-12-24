@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from "react";
 import "@rainbow-me/rainbowkit/styles.css";
 import { NavBar } from "../components/NavBar";
@@ -12,16 +13,33 @@ import {
   InputGroup,
   InputRightElement,
   Image,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  useDisclosure,
+  Heading,
+  ButtonGroup,
+  Stack,
+  HStack,
+  VStack,
+  Divider,
 } from "@chakra-ui/react";
 import { useAccount, useEnsName } from "wagmi";
 import abi from "../utils/contractABI.json";
 
 const App = () => {
   const { address, isConnected } = useAccount();
+  const { data: ensName } = useEnsName({ address });
 
   const [domain, setDomain] = useState("");
+  const imageUrl =
+    "https://imgs.search.brave.com/nUj9LhRXAOuYHg3MNRbqx2PUG-DMhQCOgAN2hd1KFiY/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9pbWFn/ZXMud2FsbHBhcGVy/c2Rlbi5jb20vaW1h/Z2UvZG93bmxvYWQv/ZXRoZXJldW1fYkd0/cWJXV1VtWnFhcmFX/a3BKUm1ibWRsclda/blpXVS5qcGc";
 
+  const ensDetails =
+    "ENS (Ethereum Name Service) is a decentralized, open-source system that allows users to register, update, and manage human-readable names on the Ethereum blockchain. These names can be used as unique identifiers for smart contracts, cryptocurrency addresses, and other resources on the Ethereum network.";
   const contractAbi = abi.abi;
+  const doNothing = async () => {};
 
   const mintDomain = async () => {
     if (!isConnected) {
@@ -33,6 +51,8 @@ const App = () => {
       alert("Please enter a domain");
       return;
     }
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const cancelRef = React.useRef();
 
     const price =
       domain.length === 3 ? "0.05" : domain.length === 4 ? "0.02" : "0.01";
@@ -62,26 +82,60 @@ const App = () => {
   };
 
   return (
-    <>
+    <Box
+      bgGradient="radial-gradient(circle at 20% 20%, #c888fdda, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #c888fdda, rgba(76, 0, 255, 0))"
+      opacity={1}
+      className="blurBg"
+    >
+      {" "}
       <NavBar />
-      <SimpleGrid
-        columns={{ base: 1, md: 2 }}
-        bg="gray.300"
-        spacing={0}
-        padding={5}
-      >
+      <SimpleGrid columns={{ base: 1, md: 1 }} spacing={0} padding={1}>
         <Flex
           direction="column"
           alignItems="start"
           justifyContent="center"
-          px={{ base: 4, lg: 20 }}
+          px={{ base: 2, lg: 10 }}
           py={24}
         >
           <chakra.h1
             mb={6}
             fontSize={{ base: "4xl", md: "4xl", lg: "5xl" }}
             fontWeight="bold"
-            color="brand.600"
+            color="black"
+            lineHeight="shorter"
+          >
+            What is domain?
+          </chakra.h1>
+          <chakra.form w="full" mb={6}></chakra.form>
+          <chakra.p
+            pr={{ base: 0, lg: 16 }}
+            mb={6}
+            fontSize="xl"
+            color="black"
+            _dark={{ color: "gray.400" }}
+            letterSpacing="wider"
+          >
+            ENS (Ethereum Name Service) is a decentralized, open-source system
+            that allows users to register, update, and manage human-readable
+            names on the Ethereum blockchain. These names can be used as unique
+            identifiers for smart contracts, cryptocurrency addresses, and other
+            resources on the Ethereum network.
+          </chakra.p>
+        </Flex>
+      </SimpleGrid>
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={0} padding={5}>
+        <Flex
+          direction="column"
+          alignItems="start"
+          justifyContent="center"
+          px={{ base: 2, lg: 10 }}
+          py={20}
+        >
+          <chakra.h1
+            mb={6}
+            fontSize={{ base: "4xl", md: "4xl", lg: "5xl" }}
+            fontWeight="bold"
+            color="black"
             lineHeight="shorter"
           >
             Get your own .eth domain.
@@ -94,18 +148,16 @@ const App = () => {
             >
               <Input
                 size="lg"
-                color="brand.900"
+                color="black"
                 type="email"
-                placeholder="Enter your .eth domain"
-                bg="white"
+                placeholder="Enter your .eth User Name"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setDomain(e.target.value)
                 }
               />
               <InputRightElement w="auto">
                 <Button
-                  color="gray.200"
-                  bg={"gray.800"}
+                  color="black"
                   variant="solid"
                   colorScheme="brand"
                   size="lg"
@@ -120,28 +172,26 @@ const App = () => {
           <chakra.p
             pr={{ base: 0, lg: 16 }}
             mb={4}
-            fontSize="sm"
-            color="brand.600"
+            fontSize="xl"
+            color="black"
             _dark={{ color: "gray.400" }}
             letterSpacing="wider"
           >
-            Get your own .eth domain with minimal fees. No more long and ugly
-            Ethereum addresses.
+            Decentralised naming for wallets, websites, & more.
           </chakra.p>
         </Flex>
         <Box>
           <Image
-            src="https://images.unsplash.com/photo-1531548731165-c6ae86ff6491?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80"
+            src={imageUrl}
             alt="3 women looking at a laptop"
             fit="cover"
             w="full"
-            h={{ base: 64, md: "full" }}
-            bg="gray.100"
+            h="full"
             loading="lazy"
           />
         </Box>
       </SimpleGrid>
-    </>
+    </Box>
   );
 };
 

@@ -5,6 +5,7 @@ import {
   Center,
   Container,
   Heading,
+  Box,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import HistoryCard from "../components/HistoryCard";
@@ -58,13 +59,22 @@ export default function history() {
   }, [isConnected]);
 
   return (
-    <>
+    <Box
+      bgGradient="radial-gradient(circle at 20% 20%, #c888fdda, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #c888fdda, rgba(76, 0, 255, 0))"
+      opacity={1}
+      className="blurBg"
+    >
       <NavBar />
+      <Center>
+        <Heading size="2xl" color="black">
+          Transactions
+        </Heading>
+      </Center>
       <Center h="100vh">
-        <Container maxW={"container.md"}>
+        <Container maxW={"container.md"} bg="#fefefe60">
           <Card>
             <CardHeader>
-              <Heading size="md">History</Heading>
+              <Heading size="md">Transactions</Heading>
             </CardHeader>
 
             <CardBody>
@@ -75,6 +85,6 @@ export default function history() {
           </Card>
         </Container>
       </Center>
-    </>
+    </Box>
   );
 }

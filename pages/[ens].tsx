@@ -17,6 +17,7 @@ import {
   NumberDecrementStepper,
   Icon,
   useToast,
+  Textarea,
 } from "@chakra-ui/react";
 import abi from "../utils/contractABI.json";
 import { ethers } from "ethers";
@@ -85,6 +86,7 @@ const App = () => {
   const { address, isConnected } = useAccount();
   const [amount, setAmount] = useState("");
   const toast = useToast();
+  const [message, setMessage] = useState("");
 
   const router = useRouter();
 
@@ -186,7 +188,7 @@ const App = () => {
               walletAddress,
               address,
               amount,
-              "Hey there!, Sending some matic"
+              message
             );
 
             addtx.wait().then(() => {
@@ -207,14 +209,17 @@ const App = () => {
   };
 
   return (
-    <>
+    <Box
+      bgGradient="radial-gradient(circle at 20% 20%, #c888fdda, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #c888fdda, rgba(76, 0, 255, 0))"
+      opacity={1}
+      className="blurBg"
+    >
       <NavBar />
       <Box
-        bgGradient={"linear(blue.300 0%, purple.300 35%, green.100 100%)"}
         style={{
           margin: 0,
           padding: 0,
-          height: "100vh",
+          height: "calc(100vh-72px)",
           width: "100vw",
           overflow: "hidden",
         }}
@@ -287,7 +292,20 @@ const App = () => {
                 FaGithub
               )}
             </VStack>
-            <Stack mt={8} direction={"row"} spacing={2}>
+            <Textarea
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setMessage(e.target.value)
+              }
+              placeholder="Enter Message"
+              borderColor={"gray.800"}
+              mt={1}
+              rows={3}
+              shadow="sm"
+              marginTop={4}
+              value={message}
+              bg={"gray.100"}
+            />
+            <Stack mt={4} direction={"row"} spacing={2}>
               <NumberInput width={"100%"}>
                 <NumberInputField
                   placeholder="Enter Matic"
@@ -332,7 +350,7 @@ const App = () => {
           </Box>
         </Flex>
       </Box>
-    </>
+    </Box>
   );
 };
 
