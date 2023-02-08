@@ -29,7 +29,7 @@ export default function HistoryCard({
   return (
     <>
       {history.map((item, index) => (
-        <Stack divider={<StackDivider />} spacing="2">
+        <Stack divider={<StackDivider />} key="" spacing="2">
           <Box>
             <Flex alignItems={"center"}>
               <Box>

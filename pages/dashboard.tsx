@@ -22,7 +22,7 @@ interface historyDetails {
   timestamp: number;
 }
 
-export default function history() {
+export default function History() {
   const [history, setHistory] = useState<historyDetails[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const { address, isConnected } = useAccount();
